@@ -1,3 +1,4 @@
+
 /**
  * @author Gregory Vincent
  * @date 1/26/22
@@ -14,7 +15,6 @@ public class Node<T> {
 
     }
 
-    @overload
     public Node(T element, Node<T>left, Node right){
         this.element = element;
         this.left = left;
@@ -42,18 +42,47 @@ public class Node<T> {
         this.left = left;
     }
 
+
     public void setRight(Node<T> right){
         this.right = right;
     }
 
     @Override
     public String toString(){
-        return this.element.toString() + " " + this.left.toString() + " " + this.right.toString();
+        return this.element.getClass().getSimpleName() + " " + 
+        this.left.getClass().getSimpleName() + " " + this.right.getClass().getSimpleName();
     }
 
-    @Override
-    public void equals(){
-        return;
+    /**
+     * @param firstRef 
+     * @param secondRef - both parameters represent any data type
+     * @return boolean
+     */
+    private boolean helperEquals(Object firstRef, Object secondRef){
+        if(firstRef == secondRef){
+            System.out.println("Nodes are equal.");
+            return true;
+        }
+        if(firstRef == null || secondRef == null){
+            System.out.println("Nodes cannot be equal if null.");
+            return false;
+        }
+        //Return an equality check for each pair of nodes in each tree
+        return firstRef.getElement().equals(secondRef.getElement()) &&
+            firstRef.getLeft().getElement().equals(secondRef.getLeft().getElement()) &&
+            firstRef.getRight.getElement().equals(secondRef.getRight().getElement());
     }
 
+    /**
+     * @return boolean
+     * @param testObj
+     * Checks equality of two different objects
+     */
+    public boolean equals(Object testObj){
+        if(testObj.getClass() != this.getClass()){
+            System.out.println("Object isn't a node.");
+            return false;
+        }
+        return helperEquals(testObj, this);
+    }
 }
