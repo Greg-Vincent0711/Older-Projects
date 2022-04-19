@@ -1,0 +1,37 @@
+#lang scheme
+;Greg Vincent
+;Binary Search Tree in Scheme
+
+;Return an empty BST
+(define emptyBST (list null null null))
+
+;Create a BST with a singular node
+(define (createBST node) (list node null null))
+
+;Create a BST with left, right and element
+;(define (createBST element left right) 
+  
+;Return the root node of the BST
+(define (rootNode BST)(car BST))
+
+;BST empty function 
+(define (emptyTree BST)(null? BST))
+
+;Return the left subtree
+(define (leftSubTree BST) (car (cdr BST)))
+  
+;Return right subtree
+;first two cdrs truncate the list. car returns that value
+(define (rightSubTree BST) (car (cdr (cdr BST))))
+
+;preorder traversal of the list
+(define (preorder BST)
+  (if(emptyBST?(BST))
+     '()
+     (define (list(append (list(rootNode(BST))))))
+                         (preorder(leftSubTree(BST)))
+                         (preorder(rightSubTree(BST))))
+
+;postorder traversal of the list
+  
+   
